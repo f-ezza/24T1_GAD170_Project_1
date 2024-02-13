@@ -17,6 +17,14 @@ public class Game_Manager : MonoBehaviour
     #endregion
 
     #region - Initialization -
+    /*
+     * Awake does the following:
+     *  - Create a new list and assign it to areas
+     *  - Get the Player_Controller script from the player (Done so via GameObject.Find(string name)
+     *  - A switch statment that will alternate the numOfAreas to generate dependent on the difficulty selected
+     *  - Set areaDataList to contain all the ScriptableObjects inside of the folder AreaData
+     *  - Call to Method GenerateAreas
+     */
     private void Awake()
     {
         areas = new List<Area>();
