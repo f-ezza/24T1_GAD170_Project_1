@@ -17,4 +17,5 @@ MonoBehaviour:
     chambers. Unearthly moans and eerie echoes add an unsettling ambiance to this
     necrotic labyrinth.
   areaSprite: {fileID: 21300000, guid: 01a9b3a48aafa7f45b108643ccdf14ab, type: 3}
+  enemy: {fileID: 11400000, guid: cb0f246207a93ec4e8861243016ab5b9, type: 2}
   areaIndex: 2

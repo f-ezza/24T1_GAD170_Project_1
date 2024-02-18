@@ -22,4 +22,5 @@ MonoBehaviour:
     dungeon jail serves as a place of retribution and containment for those who have
     dared to defy the laws of the fantastical realm."
   areaSprite: {fileID: 21300000, guid: 80f87ff8fd26f724fa529f9bc5a6e8c2, type: 3}
+  enemy: {fileID: 0}
   areaIndex: 0
