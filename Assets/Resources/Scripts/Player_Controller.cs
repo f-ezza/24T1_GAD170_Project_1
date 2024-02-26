@@ -25,21 +25,15 @@ namespace DungeonEscape
         [SerializeField] private float stamina;
 
         [Header("Stats")]
-        [SerializeField] private int healthLevel = 0;
-        [SerializeField] private int staminaLevel = 0;
-        [SerializeField] private int dexterityLevel = 0;
-        [SerializeField] private int perceptionLevel = 0;
-        [SerializeField] private int strengthLevel = 0;
+        public List<PlayerStats> playerStats;
+        [SerializeField] private float healthLevel;
+        [SerializeField] private float staminaLevel;
+        [SerializeField] private float dexterityLevel;
+        [SerializeField] private float perceptionLevel;
+        [SerializeField] private float strengthLevel;   
 
         [Header("Inventory")]
         [SerializeField] private List<ConsumableItem> inventory;
-
-        private void Start()
-        {
-            staminaBar.maxValue = 100;
-            staminaBar.minValue = 0;
-            staminaBar.value = stamina;
-        }
 
         private void Update()
         {
@@ -60,37 +54,24 @@ namespace DungeonEscape
         }
 
 
-        public void CreateCharCreatePanel()
-        {
 
+        public void AssignSkillPoints()
+        {
+            for (int i = 0; i < playerStats.Count; i++)
+            {
+                if (i == 0) { healthLevel = playerStats[i].statLevel; }
+                if (i == 1) { staminaLevel = playerStats[i].statLevel; }
+                if (i == 2) { dexterityLevel = playerStats[i].statLevel; }
+                if (i == 3) { perceptionLevel = playerStats[i].statLevel; }
+                if (i == 4) { strengthLevel = playerStats[i].statLevel; }
+
+            }
         }
 
         public void AttackEntity()
         {
             //Do Damage blah, blah, blah
 
-            switch(staminaLevel)
-            {
-                case 1:
-                    stamina -= 25 * 0.20f;
-                    break;
-                case 2:
-                    stamina -= 25 * 0.25f;
-                    break;
-                case 3:
-                    stamina -= 25 * 0.30f;
-                    break;
-                case 4:
-                    stamina -= 25 * 0.35f;
-                    break;
-                case 5:
-                    stamina -= 25 * 0.40f;
-                    break;
-                default:
-                    stamina -= 25;
-                    break;
-            }
-            staminaBar.value = stamina;
         }
 
         public void GetAreaList(List<Area> areas)

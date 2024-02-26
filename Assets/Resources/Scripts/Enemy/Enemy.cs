@@ -19,15 +19,35 @@ namespace DungeonEscape
         public void ReadCurrentEnemy(Enemy_Scriptable enemy) 
         { 
             curEnemy = enemy;
-            healthSlider.maxValue = curEnemy.health;
+            float level = Random.Range(1, 5);
+            float enemyHealth = curEnemy.health;
+            switch (level)
+            {
+                case 2:
+                    enemyHealth = enemyHealth + 25;
+                    break;
+                case 3:
+                    enemyHealth = enemyHealth + 50;
+                    break;
+                case 4:
+                    enemyHealth = enemyHealth + 75;
+                    break;
+                case 5:
+                    enemyHealth = enemyHealth + 100;
+                    break;
+                default:
+                    enemyHealth = curEnemy.health; 
+                    break;
+            }
+            healthSlider.maxValue = enemyHealth;
             armorSlider.maxValue = curEnemy.armor;
             healthSlider.minValue = 0;
             armorSlider.minValue = 0;
 
-            healthSlider.value = curEnemy.health;
+            healthSlider.value = enemyHealth;
             armorSlider.value = curEnemy.armor;
 
-            vitals.health = curEnemy.health;
+            vitals.health = enemyHealth;
             vitals.armor = curEnemy.armor;
         }
 
