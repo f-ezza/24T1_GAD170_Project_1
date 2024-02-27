@@ -13,9 +13,11 @@ namespace DungeonEscape
         private Image backgroundImage;
 
         [SerializeField] private Slider staminaBar;
-        [SerializeField] private Enemy enemy;
+        public Enemy enemy;
         [SerializeField] private GameObject comabtUI;
         [SerializeField] private GameObject enemyGameObject;
+
+        [SerializeField] private Game_Manager gameManager;
 
         [Header("Player Variables")]
         [SerializeField] private string playerName;
@@ -23,6 +25,11 @@ namespace DungeonEscape
         [SerializeField] private int playerAge;
         [SerializeField] private bool canMove;
         [SerializeField] private float stamina;
+        [SerializeField] Vitals vitals;
+
+        [Header("Attack Variables")]
+        [SerializeField] private float baseDamage;
+        [SerializeField] private float stamReduction;
 
         [Header("Stats")]
         public List<PlayerStats> playerStats;
@@ -34,6 +41,15 @@ namespace DungeonEscape
 
         [Header("Inventory")]
         [SerializeField] private List<ConsumableItem> inventory;
+
+        private void Awake()
+        {
+            canMove = false;
+            vitals = GetComponent<Vitals>();
+            staminaBar.maxValue = stamina;
+            staminaBar.minValue = 0;
+            staminaBar.value = stamina;
+        }
 
         private void Update()
         {
@@ -51,12 +67,25 @@ namespace DungeonEscape
                     }
                 }
             }
+            if(stamina <= 0)
+            {
+                PlayerLose();
+            }
         }
 
-
-
-        public void AssignSkillPoints()
+        public bool isAlive()
         {
+            if (vitals.health <= 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void AssignSkillPoints(List<PlayerStats> stats)
+        {
+            playerStats = new List<PlayerStats>();
+            playerStats = stats;
             for (int i = 0; i < playerStats.Count; i++)
             {
                 if (i == 0) { healthLevel = playerStats[i].statLevel; }
@@ -66,12 +95,172 @@ namespace DungeonEscape
                 if (i == 4) { strengthLevel = playerStats[i].statLevel; }
 
             }
+            canMove = true;
+        }
+
+        public void PlayerWin()
+        {
+            comabtUI.SetActive(false);
+            enemyGameObject.SetActive(false);
+            vitals.Heal();
+            canMove = true;
+        }
+
+        public void PlayerLose()
+        {
+            comabtUI.SetActive(false);
+            enemyGameObject.SetActive(false);
+            stamina = 0f;
+            staminaBar.value = 0f;
+            vitals.health = 0f;
+            vitals.armor = 0f;
+            Debug.Log("Oh no!, you died or ran out of stamina :C");
+            Destroy(gameObject);
         }
 
         public void AttackEntity()
         {
-            //Do Damage blah, blah, blah
+            if (gameManager.PlayerTurn() && stamina >= 5f) 
+            {
+                HandlePlayerStaminaCalculation();
+                HandlePlayerDamageCalculation();
+                gameManager.isPlayersTurn = false;
+                
+            }
 
+        }
+
+        private void HandlePlayerStaminaCalculation()
+        {
+            float stamMulti = 1;
+            switch (staminaLevel)
+            {
+                case 1:
+                    stamMulti = 0.95f;
+                    break;
+                case 2:
+                    stamMulti = 0.85f;
+                    break;
+                case 3:
+                    stamMulti = 0.75f;
+                    break;
+                case 4:
+                    stamMulti = 0.65f;
+                    break;
+                case 5:
+                    stamMulti = 0.55f;
+                    break;
+                case 6:
+                    stamMulti = 0.45f;
+                    break;
+                case 7:
+                    stamMulti = 0.35f;
+                    break;
+                case 8:
+                    stamMulti = 0.25f;
+                    break;
+                case 9:
+                    stamMulti = 0.15f;
+                    break;
+                case 10:
+                    stamMulti = 0.05f;
+                    break;
+                case 11:
+                    stamMulti = 0.025f;
+                    break;
+                default:
+                    break;
+            }
+            stamina -= stamReduction * stamMulti;
+            staminaBar.value = stamina;
+        }
+        private void HandlePlayerDamageCalculation()
+        {
+            float dmgMulti = 1;
+            switch(strengthLevel)
+            {
+                case 1:
+                    dmgMulti = 1.025f;
+                    break;
+                case 2:
+                    dmgMulti = 1.05f;
+                    break;
+                case 3:
+                    dmgMulti = 1.15f;
+                    break;
+                case 4:
+                    dmgMulti = 1.25f;
+                    break;
+                case 5:
+                    dmgMulti = 1.35f;
+                    break;
+                case 6:
+                    dmgMulti = 1.45f;
+                    break;
+                case 7:
+                    dmgMulti = 1.55f;
+                    break;
+                case 8:
+                    dmgMulti = 1.65f;
+                    break;
+                case 9:
+                    dmgMulti = 1.75f;
+                    break;
+                case 10:
+                    dmgMulti = 1.85f;
+                    break;
+                case 11:
+                    dmgMulti = 1.95f;
+                    break;
+                default:
+                    break;
+            }
+            enemy.vitals.TakeDamage(baseDamage * dmgMulti);
+        }
+
+        public void HandleIncomingAttack(float damage)
+        {
+            float dmgMulti = 1f;
+            switch(healthLevel)
+            {
+                case 1:
+                    dmgMulti = 0.95f;
+                    break;
+                case 2:
+                    dmgMulti = 0.85f;
+                    break;
+                case 3:
+                    dmgMulti = 0.75f;
+                    break;
+                case 4:
+                    dmgMulti = 0.65f;
+                    break;
+                case 5:
+                    dmgMulti = 0.55f;
+                    break;
+                case 6:
+                    dmgMulti = 0.45f;
+                    break;
+                case 7:
+                    dmgMulti = 0.35f;
+                    break;
+                case 8:
+                    dmgMulti = 0.25f;
+                    break;
+                case 9:
+                    dmgMulti = 0.15f;
+                    break;
+                case 10:
+                    dmgMulti = 0.05f;
+                    break;
+                case 11:
+                    dmgMulti = 0.025f;
+                    break;
+                default:
+                    break;
+            }
+            float damageToGive = baseDamage * dmgMulti;
+            vitals.TakeDamage(damageToGive);
         }
 
         public void GetAreaList(List<Area> areas)
@@ -94,6 +283,8 @@ namespace DungeonEscape
                 comabtUI.SetActive(true);
                 enemyGameObject.SetActive(true);
                 enemy.ReadCurrentEnemy(curArea.enemy);
+                enemyGameObject.GetComponentInChildren<Image>().sprite = enemy.curEnemy.image;
+                canMove = false;
             } 
             else 
             { 

@@ -20,7 +20,7 @@ namespace DungeonEscape
         [SerializeField] private int statPool;
         int sumOfSkills;
         [SerializeField] private List<TMP_InputField> inputFields;
-        [SerializeField] private float skills;
+        [SerializeField] private List<PlayerStats> skills;
         private Player_Controller playerController;
 
         public bool isMenuOpen()
@@ -32,16 +32,25 @@ namespace DungeonEscape
         {
             statMenu.SetActive(true);
             playerController = GetComponent<Player_Controller>();
+            skills = new List<PlayerStats>();
             statPool = 15;
         }
 
         public void CloseUI()
         {
+            sumOfSkills = 0;
             for (int i = 0; i < inputFields.Count; i++)
             {
                 int skillAmt = string.IsNullOrEmpty(inputFields[i].text) ? 3 : int.Parse(inputFields[i].text);
 
                 Debug.Log(inputFields[i].name + ": " + skillAmt);
+
+                PlayerStats stat = new PlayerStats();
+                stat.statName = inputFields[i].name;
+                stat.statLevel = skillAmt;
+
+
+                skills.Add(stat);
                 
                 sumOfSkills += skillAmt;
             }
@@ -55,6 +64,7 @@ namespace DungeonEscape
             else
             {
                 // Do something with the updated playerStats if needed.
+                playerController.AssignSkillPoints(skills);
                 statMenu.SetActive(false);
             }
         }

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25cec09ea3c6f7a4fb934a7acb002f32, type: 3}
+  m_Name: Goblin_Heavy
+  m_EditorClassIdentifier: 
+  enemyName: Heavy Goblin
+  enemyDescription: The light armored enemy goblin is a nimble and agile adversary,
+    equipped with minimal but strategic protection. With swift movements and a keen
+    sense of evasion, this goblin relies on its agility to outmaneuver foes rather
+    than relying on heavy armor. Its light armor provides some defense without compromising
+    speed, allowing the goblin to dart in and out of combat with finesse. Though
+    lacking in robust protection, this creature compensates with quick strikes and
+    elusive tactics, making it a formidable opponent for those unprepared for its
+    agile and cunning fighting style.
+  health: 150
+  armor: 50
+  damage: 40
+  missChance: 0.75
+  behaviour: 0
+  image: {fileID: 21300000, guid: 90a100e2c0fce26459e0dede969f08ec, type: 3}

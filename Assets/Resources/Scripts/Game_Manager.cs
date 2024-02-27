@@ -14,6 +14,11 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private int numOfAreas;
     [SerializeField] private List<AreaData> areaDataList;
     [SerializeField] private List<Area> areas;
+
+    [Header("Combat Manager")]
+    public bool isPlayersTurn;
+    public bool newRound;
+    public bool enemyDead;
     #endregion
 
     #region - Initialization -
@@ -55,6 +60,14 @@ public class Game_Manager : MonoBehaviour
     #endregion
 
     #region - Methods -
+    private void StartRound()
+    {
+        isPlayersTurn = true;
+        newRound = false;
+    }
+
+
+
     /*
      * Create Area is a function that does the following:
      *  - It takes a parent GameObject and the current index as arguments 1 & 2
@@ -112,6 +125,16 @@ public class Game_Manager : MonoBehaviour
     private void LoadArea(int index)
     {
         player.LoadArea(index);
+        if (player.enemy != null)
+        {
+            StartRound();
+        }
     }
+
+    public bool PlayerTurn()
+    {
+        return isPlayersTurn;
+    }
+
     #endregion
 }

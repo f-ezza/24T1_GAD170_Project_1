@@ -58,5 +58,15 @@ namespace DungeonEscape
             if (health <= 0) { health = 0; if (isPlayer) { Destroy(gameObject); }}
 
         }
+
+        public void Heal()
+        {
+            healthBar.maxValue = 100f;
+            healthBar.minValue = 0;
+            healthBar.value = 100f;
+            armorBar.maxValue = 100f;
+            armorBar.minValue = 0;
+            armorBar.value = 100f;
+        }
     }
 }
