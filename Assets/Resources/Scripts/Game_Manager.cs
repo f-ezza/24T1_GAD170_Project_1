@@ -105,7 +105,6 @@ public class Game_Manager : MonoBehaviour
 
         // Ensure that index 0 is always the first area created
         Area firstAreaScript = CreateArea(gameObject, 0, true);
-        areas.Add(firstAreaScript);
 
         // Generate additional areas
         for (int i = 1; i < numOfAreas; i++)
