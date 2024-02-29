@@ -16,5 +16,6 @@ MonoBehaviour:
   areaDescription: A platform adorned with stone gargoyles that come to life at night.
     Their watchful eyes survey the dungeon, and their eerie presence adds an element
     of guardianship.
-  areaSprite: {fileID: 21300000, guid: 6ec32fe75718c7b48b769b45bee1b318, type: 3}
+  areaSprite: {fileID: 21300000, guid: e5deb110b4b5ebf4f88fa8ef3dd3b248, type: 3}
+  enemy: {fileID: 0}
   areaIndex: 12

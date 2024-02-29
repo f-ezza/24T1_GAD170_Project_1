@@ -15,5 +15,6 @@ MonoBehaviour:
   areaName: Haunted Crypts
   areaDescription: A series of crypts haunted by restless spirits. Ethereal whispers
     and flickering apparitions create an eerie atmosphere in this spectral domain.
-  areaSprite: {fileID: 21300000, guid: 6ec32fe75718c7b48b769b45bee1b318, type: 3}
+  areaSprite: {fileID: 21300000, guid: 1372e0a7fe06bfb48b7928bbea9fa783, type: 3}
+  enemy: {fileID: 11400000, guid: cb0f246207a93ec4e8861243016ab5b9, type: 2}
   areaIndex: 8

@@ -10,6 +10,7 @@ namespace DungeonEscape
 {
     public class Enemy : MonoBehaviour
     {
+        #region - Variables -
         [Header("Current Enemy")]
         public Enemy_Scriptable curEnemy;
         public Vitals vitals;
@@ -19,7 +20,9 @@ namespace DungeonEscape
         [Header("External References")]
         [SerializeField] private Player_Controller playerController;
         [SerializeField] private Game_Manager gameManager;
+        #endregion
 
+        #region - Methods -
         private void Update()
         {
             if (!gameManager.PlayerTurn())
@@ -28,7 +31,17 @@ namespace DungeonEscape
             }
         }
 
-
+        /*
+         * ReadCurrentEnemy is a method that executes the following steps when called with an Enemy_Scriptable as an argument:
+         *  - Sets the class variable 'curEnemy' to the provided enemy scriptable object
+         *  - Generates a random level between 1 and 4 (inclusive) for the enemy
+         *  - Retrieves the base health value from the 'curEnemy' scriptable object
+         *  - Modifies the enemy's health based on the random level
+         *  - Sets the maximum values of the health and armor sliders based on the modified enemy health and base armor
+         *  - Sets the minimum values of the health and armor sliders to 0
+         *  - Sets the initial values of the health and armor sliders to the modified enemy health and base armor, respectively
+         *  - Updates the 'vitals' component's health and armor variables with the modified enemy health and base armor, respectively
+         */
         public void ReadCurrentEnemy(Enemy_Scriptable enemy) 
         { 
             curEnemy = enemy;
@@ -64,7 +77,26 @@ namespace DungeonEscape
             vitals.armor = curEnemy.armor;
         }
 
-        //How the enemy will attack
+        /*
+         * AttackPlayer is a private method that executes the following steps:
+         *  - Checks if the enemy is still alive using the 'isAlive' method
+         *    - If the enemy is alive:
+         *      - Generates a random value between 0 and 1 to determine if the attack will miss based on the enemy's miss chance
+         *      - Logs the generated value for debugging purposes
+         *      - Checks if the attack missed (miss value is 1):
+         *        - If the attack missed:
+         *          - Calls the 'HandleIncomingAttack' method of the 'playerController' with the enemy's damage
+         *          - Checks if the player is still alive after taking the damage
+         *            - If the player is still alive, sets 'gameManager.isPlayersTurn' to true
+         *            - If the player is not alive, calls the 'PlayerLose' method of the 'playerController' and ends the turn
+         *          - Sets 'gameManager.isPlayersTurn' to true
+         *        - If the attack did not miss:
+         *          - Sets 'gameManager.isPlayersTurn' to true
+         *          - Logs a message indicating the attack missed
+         *          - Returns from the method
+         *    - If the enemy is not alive:
+         *      - Calls the 'PlayerWin' method of the 'playerController' to indicate the player has won
+         */
         private void AttackPlayer()
         {
             if (isAlive())
@@ -93,6 +125,7 @@ namespace DungeonEscape
             }
         }
 
+        //Check if enemy is alive
         public bool isAlive()
         {
             if (vitals.health <= 0) {
@@ -100,5 +133,6 @@ namespace DungeonEscape
             }
             return true;
         }
+        #endregion
     }
 }

@@ -16,5 +16,6 @@ MonoBehaviour:
   areaDescription: A hidden enclave where skilled thieves and rogues operate. Traps,
     secret passages, and hidden treasures make it a dangerous yet lucrative area
     for adventurers.
-  areaSprite: {fileID: 21300000, guid: 6ec32fe75718c7b48b769b45bee1b318, type: 3}
+  areaSprite: {fileID: 21300000, guid: e5deb110b4b5ebf4f88fa8ef3dd3b248, type: 3}
+  enemy: {fileID: 11400000, guid: 8fb350b36126270459aa7aac050c57cd, type: 2}
   areaIndex: 13

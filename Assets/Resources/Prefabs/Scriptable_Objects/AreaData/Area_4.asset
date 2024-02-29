@@ -16,6 +16,6 @@ MonoBehaviour:
   areaDescription: An otherworldly space filled with illusions, mirages, and shifting
     realities. Unpredictable challenges await those who venture through this surreal
     and disorienting area.
-  areaSprite: {fileID: 21300000, guid: 6ec32fe75718c7b48b769b45bee1b318, type: 3}
+  areaSprite: {fileID: 21300000, guid: a49e6f3b6b479bb4d84b407e4fb076a1, type: 3}
   enemy: {fileID: 11400000, guid: df692cd22c0f0f546b4799d90e50c1db, type: 2}
   areaIndex: 4

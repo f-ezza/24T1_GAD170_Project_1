@@ -16,5 +16,6 @@ MonoBehaviour:
   areaDescription: A lair inhabited by fantastical beastmen, a hybrid of human and
     animal traits. Their primal roars and the scent of fur and feathers permeate
     the air.
-  areaSprite: {fileID: 21300000, guid: 6ec32fe75718c7b48b769b45bee1b318, type: 3}
+  areaSprite: {fileID: 21300000, guid: 6917d95f906893b409f6187631c8cde4, type: 3}
+  enemy: {fileID: 11400000, guid: 8fb350b36126270459aa7aac050c57cd, type: 2}
   areaIndex: 9
