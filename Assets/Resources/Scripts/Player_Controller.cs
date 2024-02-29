@@ -342,7 +342,7 @@ namespace DungeonEscape
                 default:
                     break;
             }
-            float damageToGive = baseDamage * dmgMulti;
+            float damageToGive = damage * dmgMulti;
             vitals.TakeDamage(damageToGive);
         }
 
