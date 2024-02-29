@@ -34,7 +34,6 @@ namespace DungeonEscape
                 armorBar.minValue = 0;
                 armorBar.value = armor;
             }
-            if(armor >= 1) { hasArmor = true; }
         }
 
         /*
@@ -53,6 +52,7 @@ namespace DungeonEscape
          */
         public void TakeDamage(float damage)
         {
+            if (armor >= 1) { hasArmor = true; }
             if (hasArmor)
             {
                 health -= damage * 0.25f;
@@ -85,12 +85,10 @@ namespace DungeonEscape
          */
         public void Heal()
         {
-            healthBar.maxValue = 100f;
-            healthBar.minValue = 0;
-            healthBar.value = 100f;
-            armorBar.maxValue = 100f;
-            armorBar.minValue = 0;
-            armorBar.value = 100f;
+            health = 100f;
+            armor = 100f;
+            healthBar.value = health;
+            armorBar.value = armor;
         }
         #endregion
     }

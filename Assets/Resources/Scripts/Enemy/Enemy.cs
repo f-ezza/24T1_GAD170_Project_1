@@ -122,6 +122,7 @@ namespace DungeonEscape
             else
             {
                 playerController.PlayerWin();
+                Debug.Log("Player Won!");
             }
         }
 
